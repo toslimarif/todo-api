@@ -1,0 +1,24 @@
+{
+  "name": "todo-api",
+  "version": "1.0.0",
+  "description": "REST API designed in Node.js for a TODO application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toslimarif/todo-api.git"
+  },
+  "keywords": [
+    "TODO",
+    "REST",
+    "API"
+  ],
+  "author": "Toslim Arif",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toslimarif/todo-api/issues"
+  },
+  "homepage": "https://github.com/toslimarif/todo-api#readme"
+}
