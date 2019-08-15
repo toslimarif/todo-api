@@ -25,5 +25,14 @@ RESTful API Designed in Node.js for a very simple TODO application.
 ## Authentication
 There are no authentication implemented yet. So, all the endpoints are open.
 
-## Root endpoint
+## Root Endpoint
 `http://localhost:3000/api/v1`
+
+## Core Resources
+| Method | EndPoint | Description |
+| --- | --- | --- |
+| `GET` | `/todo` | List all *todos* |
+| `POST` | `/todo` | Create a new *todo* |
+| `PUT` | `/todo/:id` | Edit existing *todo* |
+| `PATCH` | `/todo/:id` | Mark an existing *todo* as complete |
+| `DELETE` | `/todo/:id` | Delete existing *todo* |
