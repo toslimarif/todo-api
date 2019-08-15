@@ -35,7 +35,20 @@ app.use(cors());
 
 // Handle Authentication If Any
 
+// Send basic info about the API
+app.use("/api/info", (req, res, next) => {
+  res.status(200).json({
+    name: "TODO Api",
+    version: "1.0",
+    description: "RESTful API Designed in Node.js for TODO application.",
+    methodsAllowed: "GET, POST, PUT, PATCH, DELETE",
+    authType: "None",
+    rootEndPoint: req.protocol + '://' + req.get('host') + '/api/v1',
+    documentation: "https://github.com/toslimarif/todo-api"
+  });
+});
+
 // Set up API Routes
-// app.use("/api/v1/todo", todoRoutes);
+app.use("/api/v1/todo", todoRoutes);
 
 module.exports = app;
