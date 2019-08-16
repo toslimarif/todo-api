@@ -9,6 +9,8 @@ router.get('/', TodoController.getTodos);
 
 router.put('/:todoId', TodoController.updateTodo);
 
+router.patch('/:todoId', TodoController.completeTodo);
+
 router.delete('/:todoId', TodoController.deleteTodo);
 
 module.exports = router;

@@ -31,6 +31,11 @@ const todoSchema = mongoose.Schema({
             required: true,
             default: Date.now
         },
+        modifiedOn: {
+            type: Date,
+            required: true,
+            default: Date.now
+        },
         completedOn: {
             type: Date,
             default: null

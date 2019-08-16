@@ -18,9 +18,9 @@ exports.createTodo = (req, res, next) => {
         .then(
             createdTodo => {
                 res.status(201).json({
-                    status: 'Success',
-                    message: 'Todo Created SuccessFully!',
-                    todo: {
+                    'status': 'Success',
+                    'message': 'Todo Created SuccessFully!',
+                    'todo': {
                         ...createdTodo._doc,
                         todoId: createdTodo._id
                     }
@@ -30,9 +30,9 @@ exports.createTodo = (req, res, next) => {
         .catch(
             error => {
                 res.status(500).json({
-                    status: 'Error',
-                    message: 'Error in DB Operation!',
-                    error: error
+                    'status': 'Error',
+                    'message': 'Error in DB Operation!',
+                    'error': error
                 });
             }
         )
@@ -56,26 +56,26 @@ exports.getTodos = (req, res, next) => {
             todos => {
                 if (!todos.length) {
                     return res.status(404).json({
-                        status: 'Success',
-                        message: 'No Todos found!',
-                        todos: todos,
-                        todoCount: todos.length
+                        'status': 'Success',
+                        'message': 'No Todos found!',
+                        'todos': todos,
+                        'todoCount': todos.length
                     });
                 }
                 res.status(200).json({
-                    status: 'Success',
-                    message: 'Todos Fetched Successfully!',
-                    todos: todos,
-                    todoCount: todos.length
+                    'status': 'Success',
+                    'message': 'Todos Fetched Successfully!',
+                    'todos': todos,
+                    'todoCount': todos.length
                 });
             }
         )
         .catch(
             error => {
                 res.status(500).json({
-                    status: 'Error',
-                    message: 'Error in DB Operation!',
-                    error: error
+                    'status': 'Error',
+                    'message': 'Error in DB Operation!',
+                    'error': error
                 });
             }
         )
@@ -89,6 +89,51 @@ exports.updateTodo = (req, res, next) => {
         req.method,
         req.baseUrl
     );
+
+    // Get Todo Id to modify
+    const todoId = req.params.todoId;
+
+    // Execute Update
+}
+
+// To Mark todo Complete
+exports.completeTodo = (req, res, next) => {
+    // Log This Request
+    console.log(
+        (new Date()).toISOString(),
+        req.method,
+        req.baseUrl
+    );
+
+    // Get Todo Id to modify
+    const todoId = req.params.todoId;
+
+    // Execute Update
+    Todo.findOneAndUpdate({
+            _id: todoId
+        }, {
+            'isCompleted': true,
+            'timestamps.modifiedOn': Date.now(),
+            'timestamps.completedOn': Date.now()
+        })
+        .then(
+            updatedTodo => {
+                res.status(201).json({
+                    'status': 'Success',
+                    'message': 'Todo Marked as Completed!',
+                    'todo': updatedTodo
+                })
+            }
+        )
+        .catch(
+            error => {
+                res.status(500).json({
+                    'status': 'Error',
+                    'message': 'Error in DB Operation!',
+                    'error': error
+                });
+            }
+        )
 }
 
 // To Delete a Todo
