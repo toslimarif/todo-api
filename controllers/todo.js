@@ -93,7 +93,36 @@ exports.updateTodo = (req, res, next) => {
     // Get Todo Id to modify
     const todoId = req.params.todoId;
 
+    // Get Data to be modified
+    const data = req.body;
+
     // Execute Update
+    Todo.findOneAndUpdate({
+            _id: todoId
+        }, {
+            ...data,
+            'timestamps.modifiedOn': Date.now()
+        }, {
+            new: true
+        })
+        .then(
+            updatedTodo => {
+                res.status(201).json({
+                    'status': 'Success',
+                    'message': 'Todo Updated Successfully!',
+                    'todo': updatedTodo
+                })
+            }
+        )
+        .catch(
+            error => {
+                res.status(500).json({
+                    'status': 'Error',
+                    'message': 'Error in DB Operation!',
+                    'error': error
+                });
+            }
+        )
 }
 
 // To Mark todo Complete
@@ -115,6 +144,8 @@ exports.completeTodo = (req, res, next) => {
             'isCompleted': true,
             'timestamps.modifiedOn': Date.now(),
             'timestamps.completedOn': Date.now()
+        }, {
+            new: true
         })
         .then(
             updatedTodo => {
