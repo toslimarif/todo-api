@@ -104,11 +104,11 @@ https://documenter.getpostman.com/view/8474302/SVfGyBSu
 
 ### API Resources
   - [GET /todo](#get-todo)
-  - [GET /todo/:todoId](#get-todo:todoId)
+  - [GET /todo/:todoId](#get-todotodoId)
   - [POST /todo](#post-todo)
-  - [PUT /todo/:todoId](#put-todo:todoId)
-  - [PATCH /todo/:todoId](#patch-todo:todoId)
-  - [DELETE /todo/:todoId](#delete-todo:todoId)
+  - [PUT /todo/:todoId](#put-todotodoId)
+  - [PATCH /todo/:todoId](#patch-todotodoId)
+  - [DELETE /todo/:todoId](#delete-todotodoId)
 
 ### GET /todo
 To get the list of all *todos*
