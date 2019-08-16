@@ -38,7 +38,7 @@ exports.createTodo = (req, res, next) => {
         )
 }
 
-// To get all the Todos
+// To get list of Todos
 exports.getTodos = (req, res, next) => {
     // Log This Request
     console.log(
@@ -67,6 +67,49 @@ exports.getTodos = (req, res, next) => {
                     'message': 'Todos Fetched Successfully!',
                     'todos': todos,
                     'todoCount': todos.length
+                });
+            }
+        )
+        .catch(
+            error => {
+                res.status(500).json({
+                    'status': 'Error',
+                    'message': 'Error in DB Operation!',
+                    'error': error
+                });
+            }
+        )
+}
+
+// To get a specific Todo
+exports.getTodo = (req, res, next) => {
+    // Log This Request
+    console.log(
+        (new Date()).toISOString(),
+        req.method,
+        req.baseUrl
+    );
+
+    // Get Todo Id to modify
+    const todoId = req.params.todoId;
+
+    // Execute todo query
+    Todo.findOne({
+            _id: todoId
+        })
+        .then(
+            todo => {
+                if (!todo) {
+                    return res.status(404).json({
+                        'status': 'Success',
+                        'message': 'No Todo found with that Id!',
+                        'todo': todo
+                    });
+                }
+                res.status(200).json({
+                    'status': 'Success',
+                    'message': 'Todo Fetched Successfully!',
+                    'todo': todo
                 });
             }
         )
@@ -175,4 +218,29 @@ exports.deleteTodo = (req, res, next) => {
         req.method,
         req.baseUrl
     );
+
+    // Get Todo Id to delete
+    const todoId = req.params.todoId;
+
+    // Execute Update
+    Todo.findOneAndDelete({
+            _id: todoId
+        })
+        .then(
+            deletedTodo => {
+                res.status(201).json({
+                    'status': 'Success',
+                    'message': 'Todo Deleted Successfully!'
+                })
+            }
+        )
+        .catch(
+            error => {
+                res.status(500).json({
+                    'status': 'Error',
+                    'message': 'Error in DB Operation!',
+                    'error': error
+                });
+            }
+        )
 }
