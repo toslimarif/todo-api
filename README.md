@@ -23,13 +23,16 @@ RESTful API Designed in Node.js for a very simple TODO application.
 4. All timestamps return in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`
 
 ## Authentication
-There are no authentication implemented yet. So, all the endpoints are open.
+There are no authentication implemented yet. So, all the end-points are open.
 
-## Root Endpoint
+## Root End-Point
 `http://localhost:3000/api/v1`
 
 ## Core Resources
-### Schema
+### Todo
+`Todo` object represents snapshot of a specific Todo with a unique Id. You can retrieve it to see details about the Todo.
+
+#### Schema
 ```javascript
 {
     title: {
@@ -74,8 +77,8 @@ There are no authentication implemented yet. So, all the endpoints are open.
     }
 }
 ```
-### End-Points
-| Method | EndPoint | Description |
+#### End-Points
+| Method | End-Point | Description |
 | --- | --- | --- |
 | `GET` | `/todo` | List all *todos* |
 | `POST` | `/todo` | Create a new *todo* |
