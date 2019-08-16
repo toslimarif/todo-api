@@ -29,6 +29,52 @@ There are no authentication implemented yet. So, all the endpoints are open.
 `http://localhost:3000/api/v1`
 
 ## Core Resources
+### Schema
+```javascript
+{
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true,
+        default: 'N/A'
+    },
+    onDate: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    cardColor: {
+        type: String,
+        required: true,
+        default: '#cddc39'
+    },
+    isCompleted: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    timestamps: {
+        createdOn: {
+            type: Date,
+            required: true,
+            default: Date.now
+        },
+        modifiedOn: {
+            type: Date,
+            required: true,
+            default: Date.now
+        },
+        completedOn: {
+            type: Date,
+            default: null
+        }
+    }
+}
+```
+### End-Points
 | Method | EndPoint | Description |
 | --- | --- | --- |
 | `GET` | `/todo` | List all *todos* |
